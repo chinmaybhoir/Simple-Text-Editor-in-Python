@@ -6,6 +6,7 @@ A Simple Text Editor in Python
 import tkinter as tk
 import tkinter.filedialog as fdialogue
 from properties import *
+import tkinter.ttk as ttk
 
 FILELOCATION = ""
 
@@ -55,6 +56,7 @@ def open_file():
     FILELOCATION = file_location
 
 if __name__ == '__main__':
+    """ This is master	branch """
     ROOT = tk.Tk()
     MAIN_FRAME = tk.Frame(ROOT)
     MAIN_FRAME.master.title("Text Editor")
