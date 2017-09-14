@@ -5,6 +5,7 @@ A Simple Text Editor in Python
 
 import tkinter as tk
 import tkinter.filedialog as fdialogue
+from properties import *
 
 FILELOCATION = ""
 
@@ -24,7 +25,7 @@ def already_open():
     global TEXT
     text = TEXT.get("1.0", "end-1c")
     if len(text) == 0:
-        return False 
+        return False
     return True
 
 def save_file():        
@@ -49,24 +50,28 @@ def open_file():
     global TEXT
     if already_open():
         TEXT.delete("1.0", "end-1c")
-    TEXT.insert("1.0",text_string)
+    TEXT.insert("1.0", text_string)
     opened_file.close()
     FILELOCATION = file_location
 
 if __name__ == '__main__':
     ROOT = tk.Tk()
     MAIN_FRAME = tk.Frame(ROOT)
-    MAIN_FRAME.pack(fill = tk.BOTH, expand = True) 
+    MAIN_FRAME.master.title("Text Editor")
+    MAIN_FRAME.configure(background=TOOLBAR_BGCOLOR)
+    MAIN_FRAME.pack(fill=tk.BOTH, expand=True)
     NAV_BAR = tk.Canvas(MAIN_FRAME)
-    NAV_BAR.pack(side = tk.TOP)
+    NAV_BAR.pack(side=tk.TOP)
     TEXT = tk.Text(MAIN_FRAME)
-    TEXT.pack(fill = tk.BOTH, expand = True)
-    SAVEAS_BUTTON = tk.Button(NAV_BAR, text = "Save As", command = save_as)
-    SAVEAS_BUTTON.pack(side = tk.LEFT)
-    SAVE_BUTTON = tk.Button(NAV_BAR, text = "Save", command = save_file)
-    SAVE_BUTTON.pack(side = tk.LEFT)
-    OPEN_BUTTON = tk.Button(NAV_BAR, text = "Open", command = open_file)
-    OPEN_BUTTON.pack(side = tk.LEFT)
-    
-    
+    TEXT.configure(background=EDITOR_BGCOLOR)
+    TEXT.pack(fill=tk.BOTH, expand=True)
+    SAVEAS_BUTTON = tk.Button(NAV_BAR, text="Save As", command=save_as)
+    SAVEAS_BUTTON.configure(background=BUTTONS_BGCOLOR)
+    SAVEAS_BUTTON.pack(side=tk.LEFT)
+    SAVE_BUTTON = tk.Button(NAV_BAR, text="Save", command=save_file)
+    SAVE_BUTTON.configure(background=BUTTONS_BGCOLOR)
+    SAVE_BUTTON.pack(side=tk.LEFT)
+    OPEN_BUTTON = tk.Button(NAV_BAR, text="Open", command=open_file)
+    OPEN_BUTTON.configure(background=BUTTONS_BGCOLOR)
+    OPEN_BUTTON.pack(side=tk.LEFT)
     ROOT.mainloop()
